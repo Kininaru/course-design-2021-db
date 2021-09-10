@@ -16,3 +16,13 @@ func AddRecord(timestamp, latency int64) bool {
 
 	return lines == 0
 }
+
+func GetRecords() []Record {
+	var ret []Record
+
+	if err := engine.Find(&ret); err != nil {
+		panic(err)
+	}
+
+	return ret
+}
