@@ -13,7 +13,7 @@ func PasswordIsWrong(w http.ResponseWriter, r *http.Request) bool {
 	strs := strings.Split(auth, " ")
 
 	if len(strs) != 2 || strs[0] != "password" || strs[1] != config.Password {
-		Response(w, 1)
+		response(w, 1)
 		return true
 	}
 

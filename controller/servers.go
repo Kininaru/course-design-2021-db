@@ -14,8 +14,8 @@ func AddServer(w http.ResponseWriter, r *http.Request) {
 	serverName := r.Form.Get("ServerName")
 	serverHost := r.Form.Get("ServerHost")
 	if !dba.AddServer(serverName, serverHost) {
-		Response(w, 2)
+		response(w, dba.DatabaseError)
 	}
 
-	Response(w, 0)
+	response(w, 0)
 }

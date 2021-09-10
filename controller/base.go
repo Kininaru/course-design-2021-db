@@ -3,6 +3,8 @@ package controller
 import (
 	"encoding/json"
 	"net/http"
+
+	"github.com/Kininaru/course-design-2021-db/dba"
 )
 
 type Result struct {
@@ -11,7 +13,7 @@ type Result struct {
 	Data interface{} `json:"data"`
 }
 
-func Response(w http.ResponseWriter, code int, data ...interface{}) {
+func response(w http.ResponseWriter, code int, data ...interface{}) {
 	r := Result{Code: code}
 
 	if len(data) != 0 {
@@ -23,7 +25,7 @@ func Response(w http.ResponseWriter, code int, data ...interface{}) {
 	case 1:
 		r.Msg = "unauthorized operation"
 		statusCode = 403
-	case 2:
+	case dba.DatabaseError:
 		r.Msg = "database error"
 		statusCode = 502
 	}
