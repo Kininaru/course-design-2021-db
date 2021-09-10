@@ -9,7 +9,7 @@ import (
 func main() {
 	dba.Init()
 
-	staticFiles := http.FileServer(http.Dir("./web/"))
+	staticFiles := http.FileServer(http.Dir("./web/build/"))
 	http.Handle("/", http.StripPrefix("/", staticFiles))
 
 	if err := http.ListenAndServe(":23335", nil); err != nil {
