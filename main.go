@@ -1,8 +1,14 @@
 package main
 
-import "net/http"
+import (
+	"net/http"
+
+	"github.com/Kininaru/course-design-2021-db/dba"
+)
 
 func main() {
+	dba.Init()
+
 	staticFiles := http.FileServer(http.Dir("./web/"))
 	http.Handle("/", http.StripPrefix("/", staticFiles))
 

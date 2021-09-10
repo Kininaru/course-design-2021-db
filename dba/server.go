@@ -17,3 +17,13 @@ func AddServer(name, host string) bool {
 
 	return lines == 0
 }
+
+func GetServers() []Server {
+	var ret []Server
+
+	if err := engine.Find(&ret); err != nil {
+		panic(err)
+	}
+
+	return ret
+}
