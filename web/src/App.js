@@ -20,7 +20,14 @@ function App() {
 
   return (
     <MuiThemeProvider theme={theme} style={{textAlign: "center"}}>
-      <NewServer/>
+      {password === null ? null : (
+        <NewServer
+          onSubmit={server => {
+            alert(server.name);
+            alert(server.host);
+          }}
+        />
+      )}
     </MuiThemeProvider>
   );
 }

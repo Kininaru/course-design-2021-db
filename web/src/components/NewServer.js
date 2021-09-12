@@ -17,10 +17,6 @@ function NewServer(props) {
     setShowDialog(true);
   }
 
-  const submitNewServer = (server) => {
-    props.onSubmit(server);
-  }
-
   return <div style={{textAlign: "center"}}>
     <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
       <DialogTitle id="form-dialog-title">Add a server</DialogTitle>
@@ -48,10 +44,10 @@ function NewServer(props) {
         <Button onClick={() => setShowDialog(false)}>
           Cancel
         </Button>
-        <Button onClick={() => submitNewServer({
-          "name": name,
-          "host": host,
-        })}>
+        <Button onClick={() => props.onSubmit({
+            "name": name,
+            "host": host,
+          })}>
           Add
         </Button>
       </DialogActions>
