@@ -45,8 +45,8 @@ function NewServer(props) {
           Cancel
         </Button>
         <Button onClick={() => props.onSubmit({
-            "name": name,
-            "host": host,
+            name: name,
+            host: host,
           })}>
           Add
         </Button>
