@@ -4,7 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle, Input, InputLabel,
+  DialogTitle, Input, InputLabel, TextField,
 } from "@material-ui/core";
 import {useState} from "react";
 
@@ -23,40 +23,42 @@ function NewServer(props) {
 
   return <div style={{textAlign: "center"}}>
     <Dialog open={showDialog} onClose={() => setShowDialog(false)}>
-      <DialogTitle id="form-dialog-title">Add Server</DialogTitle>
+      <DialogTitle id="form-dialog-title">Add a server</DialogTitle>
       <DialogContent>
         <DialogContentText>
           Please provide some info of the server you want to monitor.
+          Server you add will update automatically every hour.
         </DialogContentText>
-        <div style={{display: "inline-block"}}>
-          <InputLabel htmlFor="my-input">Server Name</InputLabel>
-          <Input
-            autoFocus
-            onChange={e => setName(e.target.value)}
-          />
-        </div>
+        <div style={{height: 20}} />
+        <TextField
+          style={{width: "100%"}}
+          label="Server Name"
+          variant="outlined"
+          onChange={e => setName(e.target.value)}
+        />
         <div style={{height: 10}}/>
-        <div style={{display: "inline-block"}}>
-          <InputLabel htmlFor="my-input">Server Host</InputLabel>
-          <Input
-            autoFocus
-            onChange={e => setHost(e.target.value)}
-          />
-        </div>
+        <TextField
+          style={{width: "100%"}}
+          label="Server Host"
+          variant="outlined"
+          onChange={e => setHost(e.target.value)}
+        />
       </DialogContent>
       <DialogActions>
-        <Button onClick={() => setShowDialog(false)} color="primary">
+        <Button onClick={() => setShowDialog(false)}>
           Cancel
         </Button>
         <Button onClick={() => submitNewServer({
           "name": name,
           "host": host,
-        })} color="primary">
-          Subscribe
+        })}>
+          Add
         </Button>
       </DialogActions>
     </Dialog>
-    <Button variant="contained" color="primary" onClick={onAddServer}>New Server</Button>
+    <Button variant="outlined" onClick={onAddServer}>
+      New Server
+    </Button>
   </div>;
 }
 

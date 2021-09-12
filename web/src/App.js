@@ -4,16 +4,16 @@ import NewServer from "./components/NewServer";
 import {createTheme, MuiThemeProvider} from "@material-ui/core";
 
 function App() {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState(window.localStorage.getItem("password"));
   const [servers, setServers] = useState([]);
 
   const theme = createTheme({
     palette: {
       primary: {
-        main: '#42a5f5',
+        main: '#000',
       },
       secondary: {
-        main: "#111111",
+        main: "#ffffff",
       }
     },
   });
