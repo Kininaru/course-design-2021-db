@@ -37,3 +37,10 @@ func response(w http.ResponseWriter, code int, data ...interface{}) {
 		panic(err)
 	}
 }
+
+func CorsFilter(w http.ResponseWriter) {
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, Authorization,X-CSRF-Token")
+	w.Header().Set("Access-Control-Expose-Headers", "Authorization")
+}

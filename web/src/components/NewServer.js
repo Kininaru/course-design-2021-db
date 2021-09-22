@@ -4,7 +4,7 @@ import {
   DialogActions,
   DialogContent,
   DialogContentText,
-  DialogTitle, Input, InputLabel, TextField,
+  DialogTitle, TextField,
 } from "@material-ui/core";
 import {useState} from "react";
 
@@ -44,10 +44,13 @@ function NewServer(props) {
         <Button onClick={() => setShowDialog(false)}>
           Cancel
         </Button>
-        <Button onClick={() => props.onSubmit({
+        <Button onClick={() => {
+          setShowDialog(false);
+          props.onSubmit({
             name: name,
             host: host,
-          })}>
+          });
+        }}>
           Add
         </Button>
       </DialogActions>

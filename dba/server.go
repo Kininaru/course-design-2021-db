@@ -1,29 +1,18 @@
 package dba
 
 type Server struct {
-	Id   int64
+	Id   int
 	Name string
 	Host string
 }
 
-func AddServer(name, host string) bool {
-	var err error
-	var lines int64
+var servers []Server
 
-	server := Server{Name: name, Host: host}
-	if lines, err = engine.Insert(&server); err != nil {
-		panic(err)
-	}
-
-	return lines == 0
+func AddServer(name, host string) {
+	server := Server{Name: name, Host: host, Id: len(servers)}
+	servers = append(servers, server)
 }
 
 func GetServers() []Server {
-	var ret []Server
-
-	if err := engine.Find(&ret); err != nil {
-		panic(err)
-	}
-
-	return ret
+	return servers
 }

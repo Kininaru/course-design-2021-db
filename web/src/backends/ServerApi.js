@@ -1,23 +1,27 @@
-import * as Base from "./Base";
+let servers = [{
+  name: "kininaru server",
+  host: "kininaru.dev"
+}, {
+  name: "baidu server",
+  host: "baidu.com"
+}, {
+  name: "Google server",
+  host: "google.com"
+}]
 
 export function addServer(server) {
-  let fd = new FormData();
-  fd.append("name", server.name);
-  fd.append("host", server.host);
-  return fetch(`${Base.ServerUrl}/api/add-server`, {
-    method: "POST",
-    body: fd,
-  }).then(res => res.json());
-}
-
-export function deleteServer(id) {
-  return fetch(`${Base.ServerUrl}/api/delete-server?id=${id}`, {
-    method: "GET",
-  }).then(res => res.json());
+  servers.push(server);
 }
 
 export function getServers() {
-  return fetch(`${Base.ServerUrl}/api/get-servers`, {
-    method: "GET",
-  }).then(res => res.json());
+  return servers;
+}
+
+export function deleteServer(server) {
+  for (const index in servers) {
+    if (servers[index].name === server.name) {
+      delete servers[index];
+      return;
+    }
+  }
 }

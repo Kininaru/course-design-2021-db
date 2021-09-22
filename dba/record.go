@@ -1,27 +1,25 @@
 package dba
 
 type Record struct {
-	Id        int64
-	ServerId  int64
+	Id        int
+	ServerId  int
 	Timestamp int64
 	Latency   int64
 }
 
-func AddRecord(r Record) bool {
-	lines, err := engine.Insert(&r)
-	if err != err {
-		panic(err)
-	}
+var records []Record
 
-	return lines == 0
+func AddRecord(r Record) {
+	r.Id = len(records)
+	records = append(records, r)
 }
 
-func GetRecords() []Record {
+func GetRecords(id int) []Record {
 	var ret []Record
-
-	if err := engine.Find(&ret); err != nil {
-		panic(err)
+	for _, record := range records {
+		if record.ServerId == id {
+			ret = append(ret, record)
+		}
 	}
-
 	return ret
 }

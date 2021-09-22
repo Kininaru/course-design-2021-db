@@ -7,15 +7,17 @@ import (
 )
 
 func AddServer(w http.ResponseWriter, r *http.Request) {
-	if PasswordIsWrong(w, r) {
-		return
-	}
-
-	serverName := r.Form.Get("ServerName")
-	serverHost := r.Form.Get("ServerHost")
-	if !dba.AddServer(serverName, serverHost) {
-		response(w, dba.DatabaseError)
-	}
+	CorsFilter(w)
+	var bodyBytes []byte
+	r.Body.Read(bodyBytes)
+	bodyStr := string(bodyBytes)
+	dba.AddServer(bodyStr, bodyStr)
 
 	response(w, 0)
+}
+
+func GetServers(w http.ResponseWriter, r *http.Request) {
+	CorsFilter(w)
+
+	response(w, 0, dba.GetServers())
 }

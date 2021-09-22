@@ -12,6 +12,7 @@ import (
 func PingAndRecordAll() {
 	servers := dba.GetServers()
 	for _, server := range servers {
+		time.Sleep(10 * time.Second)
 		PingAndRecord(server)
 	}
 }
